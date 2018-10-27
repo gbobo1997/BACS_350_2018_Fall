@@ -1,6 +1,6 @@
 <?php
     // Connect to the database
-    require_once 'db.php';
+    require 'db.php';
      // Add a new album
     function add_album($db, $artist, $name, $artwork, $purchase_url, $description, $review, $success) {
 

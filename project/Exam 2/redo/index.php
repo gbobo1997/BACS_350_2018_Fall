@@ -9,8 +9,10 @@
     echo'<h1>Database Connection :</h1></br>';
     require 'db.php';
     echo'<h1>Database Output : </h1> </br>';
-    require 'select.php';?>
-    
+    include 'select.php';
+    include 'views.php';
+    render_albums(get_albums());
+    ?>
     <h1>Enter a new contact below: </h1></br>
     <form action="insert.php" method="post">
         <label>Name: </label>
