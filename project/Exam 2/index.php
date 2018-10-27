@@ -1,20 +1,39 @@
 <?php
+
     // Start the page
     require_once 'views.php';
-    require_once 'album.php';
-    require_once 'db.php';
  
-    $site_title = 'RCarver BACS350';
-    $page_title = 'Exam 2 - Music Manager';
+    $site_title = 'BACS 350 - Exam 2';
+    $page_title = 'View/Add Albums';
     begin_page($site_title, $page_title);
-    // Page Content
-    // Log the page load
+
+    echo '<p><a href="pagelog.php">Page Log</a></p>';
+    
+    // import album code
+    require_once 'album.php';
+    
+
+    // import log code
     require_once 'log.php';
-    //$log->log_page("exam2/index.php");
-    // Page Content
-   // Create a new album object
-    $album = new album;
-    render_album($album->query());
+    
+    $log->log_page("project/exam2/index.php");
+
+
+    // Add record from form
+    $albums->handle_actions();
+
+
+    // Render a list of albums
+    $albums->show_albums();
+
+
+    // Show the add form
+    $albums->add_form();
+
+
+    // Clear the list by sending "action" of "clear" to this view
+    echo '<p><a href="index.php?action=clear" class="btn">Clear Log</a></p>';
+
+
     end_page();
 ?>
-

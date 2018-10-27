@@ -1,13 +1,18 @@
 <?php
+
     /* ----------------------------------------------
         This code shows how to hook up a logging utility.
+
         usage:
             $text_message = "This text message";
             require_once 'log.php';
             $log->log($text_message);
             
             $log->show_log();
+
+
         SQL Database table
+
             // Create table log: date, text
             CREATE TABLE log (
               id int(3) NOT NULL AUTO_INCREMENT,
@@ -15,7 +20,10 @@
               text varchar(100) NOT NULL,
               PRIMARY KEY (id)
             );
+
     ---------------------------------------------- */
+
+
     /* ----------------------------------------------
         Data - CRUD Operations
         
@@ -24,18 +32,21 @@
         UPDATE
         DELETE - clear_log($db)
     ---------------------------------------------- */
+
+
     // Add a new record
-    function add_log($db, $text) {
+    function add_log($db, $event) {
+
         // Show if insert is successful or not
         try {
             // Create a string for "now"
             $date = date('Y-m-d g:i a');
             
             // Add database row
-            $query = "INSERT INTO log (date, text) VALUES (:date, :text);";
+            $query = "INSERT INTO log (date, EVENT) VALUES (:date, :event);";
             $statement = $db->prepare($query);
             $statement->bindValue(':date', $date);
-            $statement->bindValue(':text', $text);
+            $statement->bindValue(':event', $event);
             $statement->execute();
             $statement->closeCursor();
             return true;
@@ -45,6 +56,8 @@
             die();
         }
     }
+
+
     // Delete all database rows
     function clear_log($db) {
         
@@ -60,13 +73,19 @@
         }
         
     }
+
+
     // Query for all log
     function query_log ($db) {
+
         $query = "SELECT * FROM log";
         $statement = $db->prepare($query);
         $statement->execute();
         return $statement->fetchAll();
+
     }
+
+
     /* ----------------------------------------------
         Views
         
@@ -75,6 +94,8 @@
         UPDATE (none)
         DELETE (none)
     ---------------------------------------------- */
+
+
     // add_log_form -- Create an HTML form to add record.
     function add_log_form() {
         
@@ -90,22 +111,27 @@
             ';
         
     }
+
+
     // render_list -- Loop over all of the log to make a bullet list
     function render_list($list) {
+
         echo '
             <div class="card">
                 <h3>Page Load History</h3> 
                 <ul>
             ';
         foreach ($list as $s) {
-            echo '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
+            echo '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['EVENT'] . '</li>';
         }
         echo '
                 </ul>
             </div>';
      
     }
+
     
+
     /* ----------------------------------------------
         Controller
         
@@ -122,14 +148,19 @@
             
     ---------------------------------------------- */
     
-    require_once 'db.php';
+    require_once 'album_db.php';
+
+
     // My log list
     class Log {
+
         // Database connection
         private $db;
+
         function __construct() {
-            $this->db =  album_connect();
+            $this->db =  albums_connect();
         }
+
         
         // CRUD
         function query() {
@@ -168,6 +199,9 @@
             add_log_form();
         }
     }
+
+
     // Create a list object and connect to the database
     $log = new Log;
+
 ?>
