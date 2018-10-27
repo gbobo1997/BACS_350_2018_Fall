@@ -2,7 +2,8 @@
 
     // Connect to the database
     require_once 'album.php';
-
+    require_once 'log.php';
+    $log->log_page("project/exam2/index.php");
 
     // Pick out the inputs
     $album  = filter_input(INPUT_POST, 'album');

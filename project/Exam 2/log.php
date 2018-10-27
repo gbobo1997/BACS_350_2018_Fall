@@ -35,7 +35,7 @@
 
 
     // Add a new record
-    function add_log($db, $event) {
+    function add_log($db, $text) {
 
         // Show if insert is successful or not
         try {
@@ -43,10 +43,10 @@
             $date = date('Y-m-d g:i a');
             
             // Add database row
-            $query = "INSERT INTO log (date, EVENT) VALUES (:date, :event);";
+            $query = "INSERT INTO log (date, text) VALUES (:date, :text);";
             $statement = $db->prepare($query);
             $statement->bindValue(':date', $date);
-            $statement->bindValue(':event', $event);
+            $statement->bindValue(':text', $text);
             $statement->execute();
             $statement->closeCursor();
             return true;
