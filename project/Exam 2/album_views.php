@@ -33,15 +33,26 @@
         echo '
             <div class="card">
                 <h3>Albums</h3> 
-                <ul>
-            ';
-        foreach ($list as $s) {
-            echo '<li>' . $s['id'] . ', ' . $s['artist'] . ', ' . $s['name'] . ', ' . $s['artwork'] . ', ' . $s['purchaseURL'] . ', ' . $s['description'] . ', ' . $s['review'] . '</li>';
-            // echo '<li>' . $s['id'] . ', ' . $s['artist'] . ', ' . $s['name'] . ", <a href='".$s['artwork']"'>Artwork</a>". ', ' . $s['purchaseURL'] . ', ' . $s['description'] . ', ' . $s['review'] . '</li>';
+                <ul class="albums">';
+        foreach ($list as $c) 
+        {
+           echo '
+            <div class="card">
+                <h3>'.$c['name'].'</h3> ';
+           
+           echo '<img src="'. $c['artwork'] . '" alt="'. $c['name'] .'" width="200" height="200">';
+           echo '<div class="content">';
+           echo 'Artist: '. $c['name'].'<br>';
+           echo '<a href="' . $c['purchaseURL'] . '">Buy</a><br>';
+           echo 'Description: <br>'. $c['description'].'<br>';
+           echo 'Review: '. $c['review'].'';
+           echo '</div>';
+
+           echo '</div>';
         }
-        echo '
-                </ul>
-            </div>';
+        echo '</ul>
+        </div>';
+
     
     }
 

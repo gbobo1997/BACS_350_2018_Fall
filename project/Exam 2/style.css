@@ -48,3 +48,10 @@ p {
     padding: 20px;
     margin: 50px;
 }
+.card img {
+    float: left;
+
+}
+.content {
+    float: right;
+}
