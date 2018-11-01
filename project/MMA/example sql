@@ -1,0 +1,19 @@
+sql commands:
+
+CREATE TABLE Albums (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+artist VARCHAR(50) NOT NULL,
+name VARCHAR(100) NOT NULL,
+artwork VARCHAR(500),
+purchaseURL VARCHAR(500),
+description VARCHAR(1000), 
+review VARCHAR(1000)	
+);
+
+INSERT INTO albums (artist, name, artwork, purchaseURL, description, review)
+VALUES ('Savant', 'Slasher', 'https://f4.bcbits.com/img/a2758189808_16.jpg', 'https://savantofficial.bandcamp.com/album/slasher', ' A Halloween soundtrack album', 'Pretty good');
+
+CREATE TABLE log (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+date VARCHAR(50),
+EVENT VARCHAR(100));
