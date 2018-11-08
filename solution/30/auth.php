@@ -72,7 +72,7 @@
 
     function login_form() {
         
-        echo '
+        return '
             <div class="card">
                 <h3>Login</h3>
             
@@ -88,7 +88,7 @@
 
     function sign_up_form() {
         
-        echo '
+        return '
             <div class="card">
                 <h3>Sign Up</h3>
             
