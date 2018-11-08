@@ -25,8 +25,7 @@
 //        
 //    $content .= $auth->show_valid ($email, $password);
 
-    $content = sign_up_form() 
-        . login_form();
+    $content = sign_up_form() . login_form();
 
     // Create main part of page content
     $settings = array(
