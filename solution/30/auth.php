@@ -80,20 +80,36 @@
     
     }
 
+//// Display if password is valid or not
+//    function show_valid ($db, $email, $password) {
+//        
+//        global $log;
+//        $content = "<p>User: $email</p><p>Password: $password</p>";
+//        $valid_password = is_valid_login ($db, $email, $password);
+//        
+//        if ($valid_password) {
+//            $log->log("User Verified: $email");
+//            $content .= '<p>Is Valid</p>';
+//        }
+//        else {
+//            $log->log("Bad user login: $email");
+//            $content .= '<p>NOT Valid</p>';
+//        }
+//        return $content;
+//        
+//    }
+
 
     // Display if password is valid or not
-    function show_valid ($db, $email, $password) {
+    function show_login_info () {
         
         global $log;
-        $content = "<p>User: $email</p><p>Password: $password</p>";
-        $valid_password = is_valid_login ($db, $email, $password);
-        
         if ($valid_password) {
-            $log->log("User Verified: $email");
+            $log->log("User is Logged in");
             $content .= '<p>Is Valid</p>';
         }
         else {
-            $log->log("Bad user login: $email");
+            $log->log("Bad user login");
             $content .= '<p>NOT Valid</p>';
         }
         return $content;
@@ -117,6 +133,8 @@
         
     }
 
+
+    // Show the login
     function login_form() {
         global $log;
         $log->log("Show Login Form");
@@ -135,6 +153,8 @@
         
     }
 
+
+    // Show the sign up
     function sign_up_form() {
         global $log;
         $log->log("Show Sign Up Form");
@@ -187,8 +207,8 @@
             return register_user($this->db);
         }
         
-        function show_valid ($email, $password) {
-            return show_valid ($this->db, $email, $password);
+        function show_login ($email, $password) {
+            return show_user_login ();
         }
         
         function require_login() {
