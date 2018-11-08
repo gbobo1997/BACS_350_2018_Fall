@@ -26,6 +26,8 @@
             return register_user($db);
         }
         if ($action == 'validate') {
+            $email    = filter_input(INPUT_POST, 'email');
+            $password = filter_input(INPUT_POST, 'password');
             return validate($db, $email, $password);
         }
     }
