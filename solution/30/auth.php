@@ -1,5 +1,16 @@
 <?php
  
+/*
+    User Auth
+    
+        password verification
+        login
+        register user
+        is_logged_in
+        user admin table
+        
+*/
+
     // Set the password into the administrator table
     function register_user($db, $email, $password, $first, $last) {
         
@@ -59,7 +70,53 @@
         
     }
 
+    function login_form() {
+        
+        echo '
+            <div class="card">
+                <h3>Login</h3>
+            
+                <form action="index.php" method="post">
+                    <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
+                    <p><input type="submit" value="Login"/></p>
+                </form>
+            </div>
+            ';
+        
+    }
 
+    function sign_up_form() {
+        
+        echo '
+            <div class="card">
+                <h3>Sign Up</h3>
+            
+                <form action="index.php" method="post">
+                    <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
+                    <p><label>First Name:</label> &nbsp; <input type="text" name="first"></p>
+                    <p><label>Last Name:</label> &nbsp; <input type="text" name="last"></p>
+                    <p><input type="submit" value="Sign Up"/></p>
+                </form>
+            </div>
+            ';
+        
+    }
+
+
+
+/*
+    Object API for Authentication
+    
+    usage: 
+        require_once 'auth.php';  // Setup auth code
+        
+        $auth->require_login();   // Go to login if needed
+        $auth->logout();          // Clear the session
+        $auth->sign_up();         // Sign up form for new user
+        
+*/
 
     // My log list
     class Authenticate {
@@ -80,6 +137,12 @@
         
         function show_valid ($email, $password) {
             return show_valid ($this->db, $email, $password);
+        }
+        
+        function require_login() {
+            if (! $this->logged_in()) {
+                header ('Location: login.php');
+            }
         }
     }
 
