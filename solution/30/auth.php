@@ -101,19 +101,16 @@
 
 
     // Display if password is valid or not
-    function show_login_info () {
-        
+    function show_login () {
         global $log;
-        if ($valid_password) {
+        if (logged_in()) {
             $log->log("User is Logged in");
-            $content .= '<p>Is Valid</p>';
+            return '<p>Is Valid</p>';
         }
         else {
             $log->log("Bad user login");
-            $content .= '<p>NOT Valid</p>';
+            return '<p>NOT Valid</p>';
         }
-        return $content;
-        
     }
 
 
@@ -207,9 +204,6 @@
             return register_user($this->db);
         }
         
-        function show_login ($email, $password) {
-            return show_user_login ();
-        }
         
         function require_login() {
             if (! $this->logged_in()) {
@@ -217,9 +211,6 @@
             }
         }
         
-        function logged_in() {
-            return ($this->logged_in());
-        }
         
         function validate ($email, $password) {
             return validate ($this->db, $email, $password);
