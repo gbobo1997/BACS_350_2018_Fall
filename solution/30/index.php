@@ -29,6 +29,9 @@
 
     $content .= $auth->handle_actions();
 
+
+    $content .= $auth->show_login();
+
     // Create main part of page content
     $settings = array(
         "site_title" => "System Admins",
