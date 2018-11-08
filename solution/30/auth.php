@@ -12,28 +12,44 @@
 */
 
     // Controller for user authentication
-    function handle_auth_actions($auth) {
+    function handle_auth_actions($db) {
         $action = filter_input(INPUT_GET, 'action');
         if ($action == 'signup') {
-            return $auth->sign_up_form();
+            return sign_up_form();
         }
         if ($action == 'login') {
-            return $auth->login_form();
+            return login_form();
         }
         
         $action = filter_input(INPUT_POST, 'action');
         if ($action == 'register') {
-            return $auth->register_user();
+            return register_user($db);
         }
         if ($action == 'validate') {
-            return $auth->validate($email, $password);
+            return validate($db, $email, $password);
         }
     }
 
 
     // Test if password is valid or not
     function validate ($db, $email, $password) {
-        return is_valid_login ($db, $email, $password);
+        if (is_valid_login ($db, $email, $password)) {
+            session_start ();
+            $_SESSION['LOGGED_IN'] = 'TRUE';
+        }
+    }
+
+
+    // Check to see if user is already authenticated
+    function logged_in () {
+        return (isset($_SESSION['LOGGED_IN']) and $_SESSION['LOGGED_IN']=='TRUE') ;
+    }
+
+
+    // Cancel the login
+    function logout () {
+        unset($_SESSION['LOGGED_IN']);
+        header('Location: index.php?action=login');
     }
 
 
@@ -163,13 +179,9 @@
         }
 
         function handle_actions() {
-            return handle_auth_actions($this);
+            return handle_auth_actions($this->db);
         }
         
-        
-//        function ($email, $password) {
-//            return is_valid_login($this->db, $email, $password);
-//        }
         
         function register() {
             return register_user($this->db);
@@ -183,6 +195,10 @@
             if (! $this->logged_in()) {
                 header ('Location: login.php');
             }
+        }
+        
+        function logged_in() {
+            return ($this->logged_in());
         }
         
         function validate ($email, $password) {
