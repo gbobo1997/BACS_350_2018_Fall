@@ -71,6 +71,8 @@
     }
 
     function login_form() {
+        global $log;
+        $log->log("Show Login Form");
         
         return '
             <div class="card">
@@ -87,6 +89,8 @@
     }
 
     function sign_up_form() {
+        global $log;
+        $log->log("Show Sign Up Form");
         
         return '
             <div class="card">
