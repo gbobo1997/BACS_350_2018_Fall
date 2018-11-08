@@ -11,6 +11,18 @@
         
 */
 
+    // Controller for user authentication
+    function handle_actions() {
+        $action = filter_input(INPUT_GET, 'action');
+        if ($action == 'signup') {
+            return sign_up_form();
+        }
+        if ($action == 'login') {
+            return login_form();
+        }
+    }
+
+
     // Set the password into the administrator table
     function register_user($db, $email, $password, $first, $last) {
         
@@ -154,5 +166,9 @@
     // Create a list object and connect to the database
     require_once 'db.php';
     $auth = new Authenticate($db);
+
+
+    // Controller for authentication
+    handle_actions();
 
 ?>

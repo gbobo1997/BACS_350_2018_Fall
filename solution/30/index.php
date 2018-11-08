@@ -27,18 +27,7 @@
     //        
     //    $content .= $auth->show_valid ($email, $password);
 
-
-    function handle_actions() {
-        $action = filter_input(INPUT_GET, 'action');
-        if ($action == 'signup') {
-            return sign_up_form();
-        }
-        if ($action == 'login') {
-            return login_form();
-        }
-    }
-
-    $content .= handle_actions();
+//    $content .= handle_actions();
 
     // Create main part of page content
     $settings = array(
