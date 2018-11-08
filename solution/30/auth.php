@@ -26,8 +26,6 @@
             return register_user($db);
         }
         if ($action == 'validate') {
-            $email    = filter_input(INPUT_POST, 'email');
-            $password = filter_input(INPUT_POST, 'password');
             return validate($db, $email, $password);
         }
     }
@@ -35,6 +33,10 @@
 
     // Test if password is valid or not
     function validate ($db, $email, $password) {
+        $email    = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        global $log;
+        $log->log("Validate: $email, $password");
         if (is_valid_login ($db, $email, $password)) {
             session_start ();
             $_SESSION['LOGGED_IN'] = 'TRUE';
@@ -81,25 +83,6 @@
         $statement->closeCursor();
     
     }
-
-//// Display if password is valid or not
-//    function show_valid ($db, $email, $password) {
-//        
-//        global $log;
-//        $content = "<p>User: $email</p><p>Password: $password</p>";
-//        $valid_password = is_valid_login ($db, $email, $password);
-//        
-//        if ($valid_password) {
-//            $log->log("User Verified: $email");
-//            $content .= '<p>Is Valid</p>';
-//        }
-//        else {
-//            $log->log("Bad user login: $email");
-//            $content .= '<p>NOT Valid</p>';
-//        }
-//        return $content;
-//        
-//    }
 
 
     // Display if password is valid or not
