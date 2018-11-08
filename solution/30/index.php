@@ -27,7 +27,7 @@
     //        
     //    $content .= $auth->show_valid ($email, $password);
 
-//    $content .= handle_actions();
+    $content .= $auth->handle_actions();
 
     // Create main part of page content
     $settings = array(

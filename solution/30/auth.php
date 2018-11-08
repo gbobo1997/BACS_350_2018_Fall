@@ -160,15 +160,15 @@
                 header ('Location: login.php');
             }
         }
+        
+        function handle_actions() {
+            return handle_actions();
+        }
     }
 
 
     // Create a list object and connect to the database
     require_once 'db.php';
     $auth = new Authenticate($db);
-
-
-    // Controller for authentication
-    handle_actions();
 
 ?>
