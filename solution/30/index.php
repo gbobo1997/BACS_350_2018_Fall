@@ -30,7 +30,7 @@
     $content .= $auth->handle_actions();
 
 
-    $content .= $auth->show_login();
+    $content .= show_login();
 
     // Create main part of page content
     $settings = array(
