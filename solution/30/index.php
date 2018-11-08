@@ -32,14 +32,14 @@
         $action = filter_input(INPUT_GET, 'action');
         if ($action == 'signup') {
             $log->log("Show Sign Up Form");
-            $content .= sign_up_form();
+            return sign_up_form();
         }
         if ($action == 'login') {
             $log->log("Show Sign Up Form");
-            $content .= login_form();
+            return login_form();
         }
     }
-    handle_actions();
+    $content .= handle_actions();
 
     // Create main part of page content
     $settings = array(
