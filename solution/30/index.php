@@ -31,15 +31,15 @@
     function handle_actions() {
         $action = filter_input(INPUT_GET, 'action');
         if ($action == 'signup') {
-            $this->log("Show Sign Up Form");
+            $log->log("Show Sign Up Form");
             $content .= sign_up_form();
         }
         if ($action == 'login') {
-            $this->log("Show Sign Up Form");
+            $log->log("Show Sign Up Form");
             $content .= login_form();
         }
     }
-
+    handle_actions();
 
     // Create main part of page content
     $settings = array(
