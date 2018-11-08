@@ -16,15 +16,16 @@
 
     // Try this login
 
-    $email = "me@here.com";
-    $password = 'Rock on dude!';
+//    $email = "me@here.com";
+//    $password = 'Rock on dude!';
+//
+//    // User Setup:
+//    // require_once 'db.php';
+//    // register_user($db, $email, $password, 'New', 'User');
+//        
+//    $content .= $auth->show_valid ($email, $password);
 
-    // User Setup:
-    // require_once 'db.php';
-    // register_user($db, $email, $password, 'New', 'User');
-        
-    $content .= $auth->show_valid ($email, $password);
-
+    $content = sign_up_form() . login_form();
 
     // Create main part of page content
     $settings = array(
