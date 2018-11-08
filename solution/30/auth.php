@@ -12,19 +12,38 @@
 */
 
     // Controller for user authentication
-    function handle_actions() {
+    function handle_auth_actions($auth) {
         $action = filter_input(INPUT_GET, 'action');
         if ($action == 'signup') {
-            return sign_up_form();
+            return $auth->sign_up_form();
         }
         if ($action == 'login') {
-            return login_form();
+            return $auth->login_form();
+        }
+        
+        $action = filter_input(INPUT_POST, 'action');
+        if ($action == 'register') {
+            return $auth->register_user();
+        }
+        if ($action == 'validate') {
+            return $auth->validate($email, $password);
         }
     }
 
 
+    // Test if password is valid or not
+    function validate ($db, $email, $password) {
+        return is_valid_login ($db, $email, $password);
+    }
+
+
     // Set the password into the administrator table
-    function register_user($db, $email, $password, $first, $last) {
+    function register_user($db) {
+        
+        $email    = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        $first    = filter_input(INPUT_POST, 'first');
+        $last     = filter_input(INPUT_POST, 'last');
         
         global $log;
         $log->log("$email, $first, $last");
@@ -143,12 +162,17 @@
             $this->db =  $db;
         }
 
-        function validate($email, $password) {
-            return is_valid_login($this->db, $email, $password);
+        function handle_actions() {
+            return handle_auth_actions($this);
         }
         
-        function register($email, $password, $first, $last) {
-            return register_user($this->db, $email, $password, $first, $last);
+        
+//        function ($email, $password) {
+//            return is_valid_login($this->db, $email, $password);
+//        }
+        
+        function register() {
+            return register_user($this->db);
         }
         
         function show_valid ($email, $password) {
@@ -161,9 +185,10 @@
             }
         }
         
-        function handle_actions() {
-            return handle_actions();
+        function validate ($email, $password) {
+            return validate ($this->db, $email, $password);
         }
+
     }
 
 
