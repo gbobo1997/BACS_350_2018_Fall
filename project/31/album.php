@@ -75,10 +75,10 @@
     // Show form for adding a record
     function edit_album_view($record) {
         $id    = $record['id'];
-        $album  = $record['album'];
+        $album  = $record['name'];
         $artist = $record['artist'];
-        $artworkLink = $record['artworkLink'];
-        $purchaseLink = $record['purchaseLink'];
+        $artworkLink = $record['artwork'];
+        $purchaseLink = $record['purchaseURL'];
         $description = $record['description'];
         $review = $record['review'];
         global $page;
@@ -205,7 +205,7 @@
         $review = filter_input(INPUT_POST, 'review');
         
         // Modify database row
-        $query = "UPDATE albums SET artist = :artist, name = :album, artwork = :artworkLink, purchaseURL = :purchaseLink,  description = :description, review = :review WHERE id = :id";
+        $query = "UPDATE Albums SET artist = :artist, name = :album, artwork = :artworkLink, purchaseURL = :purchaseLink,  description = :description, review = :review WHERE id = :id";
         $statement = $db->prepare($query);
 
         $statement->bindValue(':id', $id);
