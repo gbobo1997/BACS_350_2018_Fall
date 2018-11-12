@@ -29,6 +29,7 @@
 		if( password_verify($password, getHash($username, $db)[0]))
 		{
 			$_SESSION['user_id'] = 123;
+			sleep(1);
 			header("Location: index.php");
 		}
 
