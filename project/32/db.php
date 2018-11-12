@@ -1,15 +1,17 @@
 <?php
 
-/*
-    General database connection.  This design works for either local or remote
-    database connections.  It automatically determines which is needed at 
-    execution time.
-    
-    Usage:
-        require_once 'db.php';
-        
-*/
+/* --------------------------------------      
 
+SQL for Table
+
+CREATE TABLE users (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(75) NOT NULL, 
+password VARCHAR(100) NOT NULL
+);
+
+insert into users (username, password) VALUES ('A', 'X')
+-------------------------------------- */
 
     // Connect to the remote database
     function remote_connect() {
@@ -32,21 +34,23 @@
         $username = 'root';
         $password = '';
         $db_connect = "mysql:host=$host;dbname=$dbname";
+        //echo 'local connect';
         return db_connect($db_connect, $username, $password);
 
     }
 
 
     // Open the database or die
-    function db_connect($db_connect, $username, $password) {
-        
-        // Enable these echo statements to debug the connection.
-        //  echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $password</p>";
-        try {
+    function db_connect($db_connect, $username, $password) 
+    {
+        try 
+        {
             $db = new PDO($db_connect, $username, $password);
-            // echo '<p><b>Successful Connection</b></p>';
+            //echo 'Succesful db conection';
             return $db;
-        } catch (PDOException $e) {
+        } 
+        catch (PDOException $e) 
+        {
             $error_message = $e->getMessage();
             echo "<p>Error: $error_message</p>";
             die();
@@ -56,20 +60,41 @@
 
 
     // Open the database or die
-    function connect_database() {
+    function connect() 
+    {
         
         $local = ($_SERVER['SERVER_NAME'] == 'localhost');
-        if ($local) {
+        if ($local) 
+        {
             return local_connect();
         } 
-        else {
+        else 
+        {
             return remote_connect();
         }
         
     }
 
-    // Create a connection
-
-    $db = connect_database();
+    // Insert a new user into the database
+    function insertUser($username, $password, $db)
+    {
+        try 
+        {
+            $query = "INSERT INTO users (username, password) VALUES (:u, :p);";
+            $statement = $db->prepare($query);
+            $statement->bindvalue(':u', $username);
+            $statement->bindvalue(':p', $password);
+            $statement->execute();
+            $statement->closeCursor();
+            //echo "Insert Success: </br> $username </br> $password";
+            return true;
+        }
+        catch (PDOException $e)
+        {
+            $error_message = $e->getMessage();
+            echo "<p>Error: $error_message</p>";
+            die();
+        }
+    }
 
 ?>

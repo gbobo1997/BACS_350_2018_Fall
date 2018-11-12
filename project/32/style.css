@@ -1,10 +1,9 @@
 body {
     font-size: 18px;
-    color: #0E3D65;
+    color: #5e68c4;
     margin: 20px;
     padding: 10px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #848484;
 }
 
 h1,
@@ -17,14 +16,14 @@ h3 {
 
 header {
     border: 4px solid #0E3D65;
-    background-color: #F6B018;
+    background-color: #5e68c4;
     border-radius: 20px;
-    color: #0E3D65;
+    color: #5e68c4;
 }
 
 
 h3 {
-    color: #a08ffc;
+    color: #F6B018;
 }
 
 header img {
@@ -42,18 +41,17 @@ li {
 p {
     margin: 20px;
 }
+
 .card {
     border: 1px solid black;
     border-radius: 20px;
     padding: 20px;
     margin: 50px;
-	
 }
+.card img {
+    float: left;
 
+}
 .content {
-	color: #e2e2e2;
-}
-
-a {
-	color: #7cdeff;
+    float: right;
 }
