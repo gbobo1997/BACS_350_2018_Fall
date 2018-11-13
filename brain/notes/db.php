@@ -164,4 +164,22 @@ insert into users (username, password) VALUES ('A', 'X')
         }
     }
 
+    function deleteNote($db, $id)
+    {
+        try
+        {
+            $query = "DELETE FROM notes WHERE id = :i;";
+            $statement = $db->prepare($query);
+            $statement->bindvalue(':i', $id);
+            $statement->execute();
+            $statement->closeCursor();
+        }
+        catch (PDOException $e)
+        {
+            $error_message = $e->getMessage();
+            echo "<p>Error: $error_message</p>";
+            die();
+        }
+    }
+
 ?>

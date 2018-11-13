@@ -174,6 +174,7 @@
                 <textarea rows="4" cols="50" name="newContent">'.$c['content'].'</textarea><br>
                 <input type="hidden" name="ID" value="'.$c['id'].'">
                 <input type="submit" value="Save Edit">
+                <input type="submit" formaction="delete.php" value="Delete">
                 </form>
             ';
         }
