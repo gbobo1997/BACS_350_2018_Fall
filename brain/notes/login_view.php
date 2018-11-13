@@ -158,6 +158,37 @@
         </div>';
     }
 
+    function writeNotes($list)
+    {
+        echo '
+        <div class="notes">
+            Notes:<br>
+            <ul class="listedNotes">';
+        foreach($list as $c)
+        {
+            echo '<br>'.$c['dateMade'];
+            echo 
+            '
+                <form action="edit.php" method="post">
+                Content:<br>
+                <textarea rows="4" cols="50" name="newContent">'.$c['content'].'</textarea><br>
+                <input type="hidden" name="ID" value="'.$c['id'].'">
+                <input type="submit" value="Save Edit">
+                </form>
+            ';
+        }
+            echo '
+            </ul>
+            <hr width="80%" color="#5e68c4" noshade>
+            <form action="edit.php" method="post">
+                New Note:<br>
+                <textarea rows="4" cols="50" name="newContent"></textarea><br>
+                <input type="hidden" name="ID" value="new">
+                <input type="submit" value="Save Note">
+                </form>
+        </div>';
+    }
+
 
     
 ?>

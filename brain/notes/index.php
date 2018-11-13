@@ -19,14 +19,17 @@
 	require_once 'login_view.php';
 	require_once 'login_logic.php';
 	require_once 'db.php';
+	require_once 'noteLogic.php';
  	
     $site_title = 'Brain Apps';
-    $page_title = 'Home';
+    $page_title = 'Notes';
     begin_page($site_title, $page_title);
 
-    isLoggedIn(connect(), true);
+    //isLoggedIn(connect());
 
-    listApps();
+    //listApps();
+
+    listNotes(connect());
     
 
 
