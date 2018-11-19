@@ -1,20 +1,16 @@
 <?php 
 	require_once 'login_view.php';
 	require_once 'db.php';
-	function isLoggedIn($db, $home)
+	function isLoggedIn($db)
 	{
-		if ( isset( $_SESSION['user_id'])) 
+		if ( isset( $_SESSION['user_id'] ) ) 
 		{
-			if(!$home){logoutUI();}
+			logoutUI();
 		} 
-		else
+		else 
 		{
 			echo 'Please Log In';
-			if(!$home)
-			{
-				login_form();
-			}
-			
+			login_form();
 			loginListener($db);
 		}
 	}
@@ -45,6 +41,7 @@
 		if( password_verify($password, getHash($username, $db)[0]))
 		{
 			$_SESSION['user_id'] = $username;
+			echo $username;
 			sleep(1);
 			header("Location: index.php");
 			// maybe this will work
@@ -81,5 +78,7 @@
 		$statement->execute();
 		return $statement->fetch();
 	}
+
+
 
 ?>

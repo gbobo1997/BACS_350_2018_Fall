@@ -178,11 +178,11 @@
         <div class="apps">
         <div class="row">
             <div class="column"><a href=notes/index.php> <img src="notes/logo.png" alt="notes app icon" class="icon"/></a><br>Notes</div>
-            <div class="column"><a href=review/index.php> <img src="review/logo.png" alt="review app icon" class="icon"/></a><br>Review</div>
+            <div class="column">b</div>
         </div>
         <div class="row">
-            <div class="column"></div>
-            <div class="column"></div>
+            <div class="column">c</div>
+            <div class="column">d</div>
         </div>
         </div>';
     }
