@@ -1,0 +1,474 @@
+SQL commands for database creation:
+
+create table instructor
+(instructorid varchar2 (8) NOT NULL,
+firstname varchar2 (20) NOT NULL,
+lastname varchar2 (20) NOT NULL,
+department varchar2 (40),
+office varchar2 (8),
+phone_ext varchar2 (15),
+email varchar2 (40),
+primary key (instructorid));
+
+create table student
+(studentid varchar (8) NOT NULL,
+Firstname varchar2 (20) NOT NULL,
+Lastname varchar2 (20) NOT NULL,
+grade_year varchar2 (8),
+primary key (studentid));
+
+create table tutorial_assistant
+(taID varchar2 (8) NOT NULL,
+firstname varchar2 (20) NOT NULL,
+lastname varchar2 (20) NOT NULL,
+email varchar2 (40),
+primary key (taID));
+
+create table lab_assistant
+(laID varchar2 (8) NOT NULL,
+firstname varchar2 (20) NOT NULL,
+lastname varchar2 (20) NOT NULL,
+email varchar2 (40),
+primary key (laID));
+
+create table courses
+(courseid varchar2 (8) NOT NULL,
+title varchar2 (40),
+instructorid varchar2 (8),
+description varchar2 (500),
+course_year varchar2 (8),
+classroom varchar2 (8),
+primary key (courseid),
+foreign key (instructorid) references instructor (instructorid));
+
+create table enrolled
+(studentid varchar2 (8),
+courseid varchar2 (8),
+foreign key(studentid) references student(studentid),
+foreign key(courseid) references courses(courseid));
+
+create table tutorial_sessions
+(tsessionid varchar2 (8) NOT NULL,
+courseid varchar2 (8),
+taid varchar2 (8),
+timea varchar2 (15),
+classroom varchar2 (8),
+primary key (tsessionid),
+foreign key (courseid) references courses (courseid),
+foreign key (taid) references tutorial_assistant (taid));
+
+create table lab_sessions
+(lsessionsid varchar2 (8) NOT NULL,
+courseid varchar2 (8),
+laid varchar2 (8),
+timea varchar2 (15),
+classroom varchar2 (8),
+primary key (lsessionsid),
+foreign key (courseid) references courses (courseid),
+foreign key (laid) references lab_assistant (laid));
+
+create table prerequisites
+(courseid varchar2 (8),
+prereqid varchar2 (8),
+foreign key (courseid) references courses(courseid));
+
+create table antirequisites
+(courseid varchar2 (8),
+antireqid varchar2 (8),
+foreign key (courseid) references courses(courseid));
+
+
+
+
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('lamb1234', 'Michele', 'Lamb', 'History', '24', '303-827-9910', 'michelelamb@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('joe1345', 'Joe', 'Newn', 'CIS', '28', '303-827-9990', 'joenewn@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('john4567', 'John', 'Doe', 'Math', '56', '303-678-9876', 'johndoe@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('mike4576', 'Mike', 'Lamb', 'Art', '12', '303-234-5678', 'Mikelamb@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('jeff7856', 'Jeff', 'Lutz', 'CIS', '89', '303-897-7654', 'jefflutz@school.edu');
+
+
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('rand9999', 'Randy', 'Shaw', 'Accounting', '66', '303-654-7654', 'randyshaw@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('john8745', 'John', 'Stevens', 'Math', '78', '303-458-9988', 'johnstevens@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('kevi8900', 'Kevin', 'Hass', 'Accounting', '16', '303-678-9870', 'kevinahass@school.edu');
+
+insert into instructor
+(instructorid, firstname, lastname, department, office, phone_ext, email)
+values
+('zach5423', 'Zach', 'Male', 'CIS', '99', '303-777-8887', 'zachmale@school.edu');
+
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('Cour3546', 'Courtney', 'Casperson', '1');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('marl4444', 'Marleigh', 'Catt', '2');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('nath3333', 'Nathaniel', 'Been', '4');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('robe4444', 'Robert', 'Carver', '3');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('garr7777', 'Garrett', 'Hasch', '4');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('garr6666', 'Garrett', 'Casperson', '1');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('marc4444', 'Marcus', 'Catt', '2');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('jane1111', 'Jane', 'Steven', '3');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('debo2222', 'Deborah', 'Michael', '4');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('barb8999', 'Barbara', 'Lutz', '1');
+
+insert into student
+(studentid, firstname, lastname, grade_year)
+values
+('robe4321', 'Robert', 'Lamb', '2');
+
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('case7788','Casey', 'Edens','caseyedens@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('kayl3345','Kayleen', 'Lindley','kayleenlindley@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('clai8889','Clair', 'Rood','clairrood@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('greg9997','Greg', 'Fire','gregfire@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('nate8876','Nate', 'Casperson','natecasperson@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('emil8997','Emily', 'Stevens','emilystevens@student.edu');
+
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('tess8876','Tessa', 'Shaw','tessashaw@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('hene2236','Henrey', 'John','henreyjohn@students.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('coll8215','Colleen', 'Rankin','colleenrankin@student.edu');
+
+insert into tutorial_assistant
+(taid, firstname, lastname, email)
+values
+('lind8116','Lindsea', 'Seaver','lindseaseaver@student.edu');
+
+
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('urie9865','Uriel', 'Ludger','urielludger@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('iman9981','Iman', 'Icarus','imanicarus@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('rupa2334','Rupa', 'Ahmed','rupaahamed@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('olaf2122','Olaf', 'Mann','olafmann@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('luci8900','Luci', 'Vandersteen','lucivandersteen@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('jarr1232','Jarred', 'Selma','jaredselma@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('sand2334','Sandra', 'Varsha','sandravarsha@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('ossi2345','Ossin', 'Rama','ossinrama@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('step7654','Stephanie', 'Fulton','stephaniefulton@student.edu');
+
+insert into lab_assistant
+(laid, firstname, lastname, email)
+values
+('lisa7223','Lisa', 'Harsh','lisaharsh@student.edu');
+
+
+insert into courses
+(courseid, title, instructorid, description, course_year, classroom)
+values
+('Mat666-7', 'calculus', 'john4567' , 'introduction to caluclus, this is a hard course', '2', '99');
+
+insert into courses
+(courseid, title, instructorid, description, course_year, classroom)
+values
+('CIS889-9', 'object oriented programing', 'joe1345' , 'this course will kill you after skinning you alive', '4', '98');
+
+insert into courses
+(courseid, title, instructorid, description, course_year, classroom)
+values
+('His001-1', 'American History', 'lamb1234' , 'take this as a filler course, you will learn nothing you didnt already learn in highschool', '1', '97');
+
+insert into courses
+(courseid, title, instructorid, description, course_year, classroom)
+values
+('CIS001-2','web design', 'jeff7856' , 'you learn javascript in this class', '1', '99');
+
+insert into courses
+(courseid, title, instructorid, description, course_year, classroom)
+values
+('Acc982-2','Intro to Accounting', 'rand9999' , 'this course has a lot of addition in it', '4', '87');
+
+
+insert into enrolled
+(studentid, courseid)
+values
+('marc4444', 'Acc982-2');
+
+insert into enrolled
+(studentid, courseid)
+values
+('Cour3546', 'CIS001-2');
+
+insert into enrolled
+(studentid, courseid)
+values
+('nath3333', 'CIS889-9');
+
+insert into enrolled
+(studentid, courseid)
+values
+('garr7777', 'His001-1');
+
+insert into enrolled
+(studentid, courseid)
+values
+('garr6666', 'Mat666-7');
+
+
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('mat666-0','Mat666-7','case7788','10:00am','101');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('CIS889-0','CIS889-9','hene2236','11:00am','102');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('his001-0','His001-1','emil8997','12:00am','103');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('CIS001-0','CIS001-2','tess8876','1:00am','104');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('Acc982-0','Acc982-2','coll8215','2:00am','105');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('mat666-0','Mat666-7','case7788','10:00am','101');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('CIS889-0','CIS889-9','hene2236','11:00am','102');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('his001-0','His001-1','emil8997','12:00pm','103');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('CIS001-0','CIS001-2','tess8876','1:00apm','104');
+
+insert into tutorial_sessions
+(tsessionid, courseid, taid, timea, classroom)
+values
+('Acc982-0','Acc982-2','coll8215','2:00pm','105');
+
+
+insert into lab_sessions
+(lsessionsid, courseid, laid, timea, classroom)
+values
+('mat666-5','Mat666-7','luci8900','3:00pm','201');
+
+insert into lab_sessions
+(lsessionsid, courseid, laid, timea, classroom)
+values
+('cis889-5','CIS889-9','jarr1232','4:00mp','202');
+
+insert into lab_sessions
+(lsessionsid, courseid, laid, timea, classroom)
+values
+('his001-5','His001-1','sand2334','5:00pm','203');
+
+insert into lab_sessions
+(lsessionsid, courseid, laid, timea, classroom)
+values
+('cis001-5','CIS001-2','ossi2345','6:00pm','204');
+
+insert into lab_sessions
+(lsessionsid, courseid, laid, timea, classroom)
+values
+('acc982-5','Acc982-2','step7654','7:00pm','205');
+
+
+insert into prerequisites 
+(courseid, prereqid)
+values
+('Mat666-7','Mat566');
+
+insert into prerequisites 
+(courseid, prereqid)
+values
+('CIS889-9','CIS788');
+
+insert into prerequisites 
+(courseid, prereqid)
+values
+('His001-1','His000');
+
+insert into prerequisites 
+(courseid, prereqid)
+values
+('CIS001-2','CIS000');
+
+insert into prerequisites 
+(courseid, prereqid)
+values
+('Acc982-2','Acc888');
+
+
+
+insert into antirequisites 
+(courseid, antireqid)
+values
+('Mat666-7','Mat766');
+
+insert into antirequisites 
+(courseid, antireqid)
+values
+('CIS889-9','CIS900');
+
+insert into antirequisites 
+(courseid, antireqid)
+values
+('His001-1','His200');
+
+insert into antirequisites 
+(courseid, antireqid)
+values
+('CIS001-2','CIS200');
+
+insert into antirequisites 
+(courseid, antireqid)
+values
+('Acc982-2','Acc998');
+
+
