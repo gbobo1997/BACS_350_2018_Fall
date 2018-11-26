@@ -4,7 +4,8 @@
         begin_page -- Create the HTML for the beginning of a page.  Add a page title and headline.
     */
     require_once 'login_logic.php';
-    function begin_page($site_title, $page_title) {
+    function begin_page($site_title, $page_title) 
+    {
 
         // Maybe this is causing login error, header is being directed multiple times
         // and the php platform doesnt like that
@@ -156,7 +157,7 @@
                               <li><a href="../review/index.php">Review</a></li>
 
                               <li><a href=index.php">Slides</a></li>
-                              <li style="float:right"><a href="login.php" class="active">'.loggedIn().'</a></li>
+                              <li style="float:right"><a href="../login.php" class="active">'.loggedIn().'</a></li>
 
                             </ul>
                         </header>
@@ -220,38 +221,6 @@
             <div class="column">c</div>
             <div class="column">d</div>
         </div>
-        </div>';
-    }
-
-    function writeNotes($list)
-    {
-        echo '
-        <div class="notes">
-            Notes:<br>
-            <ul class="listedNotes">';
-        foreach($list as $c)
-        {
-            echo '<br>'.$c['dateMade'];
-            echo 
-            '
-                <form action="edit.php" method="post">
-                Content:<br>
-                <textarea rows="4" cols="50" name="newContent">'.$c['content'].'</textarea><br>
-                <input type="hidden" name="ID" value="'.$c['id'].'">
-                <input type="submit" value="Save Edit">
-                <input type="submit" formaction="delete.php" value="Delete">
-                </form>
-            ';
-        }
-            echo '
-            </ul>
-            <hr width="80%" color="#5e68c4" noshade>
-            <form action="edit.php" method="post">
-                New Note:<br>
-                <textarea rows="4" cols="50" name="newContent"></textarea><br>
-                <input type="hidden" name="ID" value="new">
-                <input type="submit" value="Save Note">
-                </form>
         </div>';
     }
 

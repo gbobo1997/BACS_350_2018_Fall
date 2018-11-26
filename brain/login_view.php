@@ -34,6 +34,7 @@
                               <li><a href="index.php" class="active">Home</a></li>
                               <li><a href="notes/index.php">Notes</a></li>
                               <li><a href="review/index.php">Review</a></li>
+                              <li><a href="slides/index.php">Slides</a></li>
                               <li style="float:right"><a href="login.php">'.loggedIn().'</a></li>
                             </ul>
                         </header>
@@ -63,6 +64,7 @@
                               <li><a href="../index.php">Home</a></li>
                               <li><a href="index.php" class="active">Notes</a></li>
                               <li><a href="../review/index.php">Review</a></li>
+                              <li><a href="../slides/index.php">Slides</a></li>
                               <li style="float:right"><a href="../login.php">'.loggedIn().'</a></li>
                             </ul>
                         </header>
@@ -92,6 +94,7 @@
                               <li><a href="index.php">Home</a></li>
                               <li><a href="notes/index.php">Notes</a></li>
                               <li><a href="review/index.php">Review</a></li>
+                              <li><a href="slides/index.php">Slides</a></li>
                               <li style="float:right"><a href="login.php" class="active">'.loggedIn().'</a></li>
                             </ul>
                         </header>
@@ -121,7 +124,40 @@
                               <li><a href="../index.php">Home</a></li>
                               <li><a href="../notes/index.php">Notes</a></li>
                               <li><a href="index.php">Review</a></li>
+                              <li><a href="../slides/index.php">Slides</a></li>
                               <li style="float:right"><a href="login.php" class="active">'.loggedIn().'</a></li>
+                            </ul>
+                        </header>
+                        <main>
+            '; 
+        }
+        if($page_title == 'Slides')
+        {
+            echo '
+                <!DOCTYPE html>
+                <html lang="en">
+                    <head>
+            
+                        <meta charset="UTF-8">
+                        <title>' . $page_title . '</title>
+
+                        <link rel="stylesheet" href="style.css">
+
+                    </head>
+                    <body>
+
+                        <header>
+                            <img src="logo.png" alt="page Logo"/>
+                            <h1>' . $site_title . '</h1>
+                            <h2>' . $page_title . '</h2>
+                            <ul class="navbar">
+                              <li><a href="../index.php">Home</a></li>
+                              <li><a href="../notes/index.php">Notes</a></li>
+                              <li><a href="../review/index.php">Review</a></li>
+
+                              <li><a href=index.php">Slides</a></li>
+                              <li style="float:right"><a href="login.php" class="active">'.loggedIn().'</a></li>
+
                             </ul>
                         </header>
                         <main>
@@ -181,7 +217,7 @@
             <div class="column"><a href=review/index.php> <img src="review/logo.png" alt="review app icon" class="icon"/></a><br>Review</div>
         </div>
         <div class="row">
-            <div class="column"></div>
+            <div class="column"><a href=slides/index.php> <img src="slides/logo.png" alt="slides app icon" class="icon"/></a><br>Slides</div>
             <div class="column"></div>
         </div>
         </div>';
