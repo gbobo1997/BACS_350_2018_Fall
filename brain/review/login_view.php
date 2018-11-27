@@ -125,7 +125,7 @@
                               <li><a href="../notes/index.php">Notes</a></li>
                               <li><a href="index.php">Review</a></li>
                               <li><a href="../slides/index.php">Slides</a></li>
-                              <li style="float:right"><a href="login.php" class="active">'.loggedIn().'</a></li>
+                              <li style="float:right"><a href="../login.php" class="active">'.loggedIn().'</a></li>
                             </ul>
                         </header>
                         <main>
@@ -156,7 +156,7 @@
                               <li><a href="../review/index.php">Review</a></li>
 
                               <li><a href=index.php">Slides</a></li>
-                              <li style="float:right"><a href="login.php" class="active">'.loggedIn().'</a></li>
+                              <li style="float:right"><a href="../login.php" class="active">'.loggedIn().'</a></li>
 
                             </ul>
                         </header>
