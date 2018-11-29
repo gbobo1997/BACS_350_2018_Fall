@@ -25,7 +25,7 @@
                     <body>
 
                         <header>
-                            <img src="logo.png" style="width=200px;" alt="page Logo"/>
+                            <img src="logo.png" width="200" height="200" alt="page Logo"/>
                             <h1>' . $site_title . '</h1>
                             <h2>' . $page_title . '</h2>
                         </header>

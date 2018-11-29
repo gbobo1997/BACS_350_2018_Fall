@@ -1,0 +1,1 @@
+<?php header('Location: http://pvw.wpr.mybluehost.me/brain/slides/index.php'); exit;?>
